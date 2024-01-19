@@ -46,7 +46,7 @@ class SongsService {
       values,
     });
 
-    return result.rows.map(songDBToModel);
+    return result.rows;
   }
 
   async getSongById(id) {
@@ -55,12 +55,12 @@ class SongsService {
       values: [id],
     };
 
-    const result = await this._pool.query(query);
-    if (!result.rowCount) {
+    const { rows, rowCount } = await this._pool.query(query);
+    if (!rowCount) {
       throw new NotFoundError('Song not found');
     }
 
-    return result.rows.map(songDBToModel)[0];
+    return rows.map(songDBToModel)[0];
   }
 
   async editSongById(id, {

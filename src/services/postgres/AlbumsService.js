@@ -34,8 +34,8 @@ class AlbumsService {
     if (!albumResult.rowCount) {
       throw new NotFoundError('Album not found');
     }
-
     const album = albumResult.rows[0];
+
     const songsQuery = {
       text: 'SELECT * FROM songs WHERE album_id = $1',
       values: [album.id],
