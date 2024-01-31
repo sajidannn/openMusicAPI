@@ -17,4 +17,10 @@ const songDBToModel = ({
   albumId: album_id,
 });
 
-module.exports = { songDBToModel };
+const albumToModel = ({
+  id, name, year, songs, cover,
+}) => ({
+  id, name, year, songs, coverUrl: cover,
+});
+
+module.exports = { songDBToModel, albumToModel };
